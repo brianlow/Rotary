@@ -1,0 +1,11 @@
+{
+  "name": "Rotary",
+  "description": "Rotary encoder library for Arduino",
+  "keywords": "rotary,encoder",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brianlow/Rotary.git"
+  },
+  "frameworks": "arduino",
+  "platforms": "atmelavr"
+}
