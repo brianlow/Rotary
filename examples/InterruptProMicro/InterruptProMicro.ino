@@ -26,6 +26,7 @@ Rotary r = Rotary(8, 9);
 
 void setup() {
   Serial.begin(9600);
+  r.begin();
   PCICR |= (1 << PCIE0);
   PCMSK0 |= (1 << PCINT4) | (1 << PCINT5);
   sei();

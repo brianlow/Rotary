@@ -72,15 +72,22 @@ Rotary::Rotary(char _pin1, char _pin2) {
   // Assign variables.
   pin1 = _pin1;
   pin2 = _pin2;
-  // Set pins to input.
-  pinMode(pin1, INPUT);
-  pinMode(pin2, INPUT);
-#ifdef ENABLE_PULLUPS
-  digitalWrite(pin1, HIGH);
-  digitalWrite(pin2, HIGH);
-#endif
   // Initialise state.
   state = R_START;
+}
+
+void Rotary::begin(bool pullup) {
+
+  if (pullup){
+    Serial.println("pullup");
+    // Enable weak pullups
+    pinMode(pin1,INPUT_PULLUP);
+    pinMode(pin2,INPUT_PULLUP);
+  }else{
+    // Set pins to input.
+    pinMode(pin1, INPUT);
+    pinMode(pin2, INPUT);
+  }
 }
 
 unsigned char Rotary::process() {

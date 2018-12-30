@@ -14,6 +14,7 @@ Rotary r = Rotary(2, 3);
 
 void setup() {
   Serial.begin(9600);
+  r.begin(true);
 }
 
 void loop() {
