@@ -79,7 +79,6 @@ Rotary::Rotary(char _pin1, char _pin2) {
 void Rotary::begin(bool pullup) {
 
   if (pullup){
-    Serial.println("pullup");
     // Enable weak pullups
     pinMode(pin1,INPUT_PULLUP);
     pinMode(pin2,INPUT_PULLUP);

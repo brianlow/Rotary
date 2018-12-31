@@ -5,6 +5,10 @@ Arduino library for reading rotary encoders that output a 2-bit [gray code](http
 
     Rotary r = Rotary(2, 3);
 
+    void setup() {
+      r.begin();
+    }
+
     void loop() {
       result = r.process();
       if (result) {
