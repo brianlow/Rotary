@@ -9,11 +9,10 @@
 
 #include <Rotary.h>
 
-Rotary r = Rotary(2, 3);
+Rotary r(2, 3);
 
 void setup() {
   Serial.begin(9600);
-  r.begin();
   PCICR |= (1 << PCIE2);
   PCMSK2 |= (1 << PCINT18) | (1 << PCINT19);
   sei();
