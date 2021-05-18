@@ -74,6 +74,8 @@ Rotary::Rotary(char _pin1, char _pin2) {
   pin2 = _pin2;
   // Initialise state.
   state = R_START;
+  // Don't invert read pin state by default
+  inverter = 0;
 }
 
 void Rotary::begin(bool pullup) {
@@ -86,12 +88,13 @@ void Rotary::begin(bool pullup) {
     // Set pins to input.
     pinMode(pin1, INPUT);
     pinMode(pin2, INPUT);
+    inverter = 1;
   }
 }
 
 unsigned char Rotary::process() {
   // Grab state of input pins.
-  unsigned char pinstate = (digitalRead(pin2) << 1) | digitalRead(pin1);
+  unsigned char pinstate = ((inverter - digitalRead(pin2)) << 1) | (inverter - digitalRead(pin1));
   // Determine new state from the pins and state table.
   state = ttable[state & 0xf][pinstate];
   // Return emit bits, ie the generated event.

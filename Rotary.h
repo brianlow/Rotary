@@ -28,6 +28,7 @@ class Rotary
     unsigned char state;
     unsigned char pin1;
     unsigned char pin2;
+    unsigned char inverter;
 };
 
 #endif
