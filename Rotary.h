@@ -23,7 +23,7 @@ class Rotary
   public:
     Rotary(char, char);
     unsigned char process();
-    void begin(bool pullup=true);
+    void begin(bool internalPullup=true, bool flipLogicForPulldown=false);
   private:
     unsigned char state;
     unsigned char pin1;

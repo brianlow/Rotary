@@ -78,9 +78,9 @@ Rotary::Rotary(char _pin1, char _pin2) {
   inverter = 0;
 }
 
-void Rotary::begin(bool pullup) {
+void Rotary::begin(bool internalPullup, bool flipLogicForPulldown) {
 
-  if (pullup){
+  if (internalPullup){
     // Enable weak pullups
     pinMode(pin1,INPUT_PULLUP);
     pinMode(pin2,INPUT_PULLUP);
@@ -88,8 +88,8 @@ void Rotary::begin(bool pullup) {
     // Set pins to input.
     pinMode(pin1, INPUT);
     pinMode(pin2, INPUT);
-    inverter = 1;
   }
+  inverter = flipLogicForPulldown ? 1 : 0;
 }
 
 unsigned char Rotary::process() {
