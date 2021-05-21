@@ -25,12 +25,18 @@ Features
 * Checks for valid state changes for more robust counting / noise immunity
 * Interrupt based or polling in loop()
 * Counts full-steps (default) or half-steps
+* Supports use with pull-up (default) and pull-down resistors
 
-Installation
-------------
-1. Download and unzip to Arduino\\libraries\\Rotary. So for example rotary.h will be in Arduino\\libraries\\Rotary\\rotary.h. 
+Installation / Usage
+--------------------
+1. Download and unzip to Arduino\\libraries\\Rotary. So for example Rotary.h will be in Arduino\\libraries\\Rotary\\Rotary.h. 
 2. Restart Arduino IDE
 3. File -> Examples -> Rotary
+
+Note: Resistor usage is specified through `void begin(bool internalPullup=true, bool flipLogicForPulldown=false)`.
+* `r.begin()` enables the Arduino's internal weak pull-ups for the rotary's pins
+* `r.begin(false)` disables the Arduino's internal weak pull-ups for the given pins and configures the rotary for use with external _pull-ups_
+* `r.begin(false, true)` disables the internal pull-ups and flips the pin logic for use with external _pull-downs_
 
 Background
 ----------
@@ -59,7 +65,7 @@ Detecting the direction is easy - the table simply goes in the other direction (
 
 To decode this, we use a simple state machine. Every time the output code changes, it follows state, until finally a full steps worth of code is received (in the correct order). At the final 0-0, it returns a value indicating a step in one direction or the other.
 
-It's also possible to use 'half-step' mode. This just emits an event at both the 0-0 and 1-1 positions. This might be useful for some encoders where you want to detect all positions. In rotary.h, uncomment  `#define HALF_STEP` to enable half-step mode.
+It's also possible to use 'half-step' mode. This just emits an event at both the 0-0 and 1-1 positions. This might be useful for some encoders where you want to detect all positions. In Rotary.h, uncomment  `#define HALF_STEP` to enable half-step mode.
 
 If an invalid state happens (for example we go from '0-1' straight to '1-0'), the state machine resets to the start until 0-0 and the next valid codes occur.
 
