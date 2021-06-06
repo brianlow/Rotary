@@ -94,7 +94,7 @@ void Rotary::begin(bool internalPullup, bool flipLogicForPulldown) {
 
 unsigned char Rotary::process() {
   // Grab state of input pins.
-  unsigned char pinstate = ((inverter - digitalRead(pin2)) << 1) | (inverter - digitalRead(pin1));
+  unsigned char pinstate = ((inverter ^ digitalRead(pin2)) << 1) | (inverter ^ digitalRead(pin1));
   // Determine new state from the pins and state table.
   state = ttable[state & 0xf][pinstate];
   // Return emit bits, ie the generated event.
